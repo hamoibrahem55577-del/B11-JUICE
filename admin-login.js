@@ -1,223 +1,150 @@
-// ========================================
-// ADMIN LOGIN
-// ========================================
+// =====================================
+// SUPABASE ADMIN LOGIN
+// =====================================
 
-function adminLogin() {
+async function adminLogin() {
 
-    const usernameInput =
-        document.getElementById("admin-username");
+    const usernameInput = document.getElementById("admin-username");
+    const passwordInput = document.getElementById("admin-password");
+    const errorElement = document.getElementById("login-error");
+    const loginButton = document.getElementById("login-button");
 
-    const passwordInput =
-        document.getElementById("admin-password");
-
-    const error =
-        document.getElementById("login-error");
-
-    const loginButton =
-        document.getElementById("login-button");
-
-
-    // التأكد من وجود العناصر
-    if (
-        !usernameInput ||
-        !passwordInput ||
-        !error ||
-        !loginButton
-    ) {
+    if (!usernameInput || !passwordInput || !errorElement || !loginButton) {
         return;
     }
 
+    const email = usernameInput.value.trim();
+    const password = passwordInput.value;
 
-    const username =
-        usernameInput.value.trim();
+    errorElement.textContent = "";
 
-    const password =
-        passwordInput.value;
-
-
-    // مسح رسالة الخطأ القديمة
-    error.textContent = "";
-
-
-    // ========================================
-    // التحقق من البيانات
-    // ========================================
-
-    if (username === "" || password === "") {
-
-        error.textContent =
-            "❌ من فضلك املأ جميع البيانات";
-
+    // التأكد من البيانات
+    if (email === "" || password === "") {
+        errorElement.textContent = "❌ من فضلك املأ الإيميل وكلمة المرور";
         return;
     }
 
+    loginButton.disabled = true;
+    loginButton.textContent = "جاري تسجيل الدخول...";
 
-    // ========================================
-    // بيانات الأدمن المؤقتة
-    // ========================================
+    try {
 
-    const ADMIN_USERNAME = "admin";
-    const ADMIN_PASSWORD = "1234";
+        const result = await supabaseClient.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
 
+        const loginError = result.error;
+        const data = result.data;
 
-    // ========================================
-    // LOGIN
-    // ========================================
+        if (loginError) {
+            console.error("Supabase Login Error:", loginError);
+            throw loginError;
+        }
 
-    if (
-        username === ADMIN_USERNAME &&
-        password === ADMIN_PASSWORD
-    ) {
+        if (!data || !data.user) {
+            throw new Error("لم يتم العثور على المستخدم");
+        }
 
-        // حفظ حالة تسجيل الدخول
-        localStorage.setItem(
-            "adminLoggedIn",
-            "true"
-        );
+        // تسجيل الدخول بنجاح
+        localStorage.setItem("adminLoggedIn", "true");
+        localStorage.setItem("adminEmail", data.user.email);
 
+        loginButton.textContent = "تم الدخول ✅";
 
-        // حفظ اسم الأدمن
-        localStorage.setItem(
-            "adminUsername",
-            username
-        );
+        window.location.href = "admin.html";
 
+    } catch (loginError) {
 
-        // تعطيل الزر مؤقتًا
-        loginButton.disabled = true;
+        console.error("Login failed:", loginError);
 
-        loginButton.textContent =
-            "جاري الدخول...";
+        errorElement.textContent =
+            "❌ الإيميل أو كلمة المرور غير صحيحة";
 
-
-        // الانتقال للوحة التحكم
-        setTimeout(function () {
-
-            window.location.href =
-                "admin.html";
-
-        }, 300);
-
-
-    } else {
-
-        // بيانات خاطئة
-        error.textContent =
-            "❌ اسم المستخدم أو كلمة المرور غير صحيحة";
-
-
-        // مسح كلمة المرور
-        passwordInput.value = "";
-
+        // هنا مش هنمسح الباسورد
         passwordInput.focus();
 
+        loginButton.disabled = false;
+        loginButton.textContent = "🔐 تسجيل الدخول";
     }
-
 }
 
 
-// ========================================
+// =====================================
 // LOGIN BUTTON
-// ========================================
+// =====================================
 
-const loginButton =
-    document.getElementById("login-button");
-
+const loginButton = document.getElementById("login-button");
 
 if (loginButton) {
-
-    loginButton.addEventListener(
-        "click",
-        adminLogin
-    );
-
+    loginButton.addEventListener("click", adminLogin);
 }
 
 
-// ========================================
+// =====================================
 // ENTER KEY
-// ========================================
+// =====================================
 
-const usernameInput =
-    document.getElementById("admin-username");
-
-const passwordInput =
-    document.getElementById("admin-password");
-
+const usernameInput = document.getElementById("admin-username");
+const passwordInput = document.getElementById("admin-password");
 
 if (usernameInput) {
 
-    usernameInput.addEventListener(
-        "keydown",
-        function (event) {
+    usernameInput.addEventListener("keydown", function (e) {
 
-            if (event.key === "Enter") {
-
-                adminLogin();
-
-            }
-
+        if (e.key === "Enter") {
+            adminLogin();
         }
-    );
+
+    });
 
 }
 
 
 if (passwordInput) {
 
-    passwordInput.addEventListener(
-        "keydown",
-        function (event) {
+    passwordInput.addEventListener("keydown", function (e) {
 
-            if (event.key === "Enter") {
-
-                adminLogin();
-
-            }
-
+        if (e.key === "Enter") {
+            adminLogin();
         }
-    );
+
+    });
 
 }
 
 
-// ========================================
+// =====================================
 // CLEAR ERROR WHILE TYPING
-// ========================================
+// =====================================
 
 if (usernameInput) {
 
-    usernameInput.addEventListener(
-        "input",
-        function () {
+    usernameInput.addEventListener("input", function () {
 
-            const error =
-                document.getElementById("login-error");
+        const errorElement =
+            document.getElementById("login-error");
 
-            if (error) {
-                error.textContent = "";
-            }
-
+        if (errorElement) {
+            errorElement.textContent = "";
         }
-    );
+
+    });
 
 }
 
 
 if (passwordInput) {
 
-    passwordInput.addEventListener(
-        "input",
-        function () {
+    passwordInput.addEventListener("input", function () {
 
-            const error =
-                document.getElementById("login-error");
+        const errorElement =
+            document.getElementById("login-error");
 
-            if (error) {
-                error.textContent = "";
-            }
-
+        if (errorElement) {
+            errorElement.textContent = "";
         }
-    );
+
+    });
 
 }
