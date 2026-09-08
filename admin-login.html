@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>دخول الأدمن - B11 JUICE</title>
+
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body class="admin-login-body">
+
+    <main class="admin-login-page">
+
+        <div class="admin-login-box">
+
+            <!-- Logo -->
+            <div class="admin-login-logo">
+                <img
+                    src="b11-logo.png"
+                    alt="B11 JUICE"
+                >
+            </div>
+
+            <!-- Lock Icon -->
+            <div class="admin-login-icon">
+                🔐
+            </div>
+
+            <!-- Title -->
+            <h1>دخول الأدمن</h1>
+
+            <p class="admin-login-subtitle">
+                لوحة تحكم B11 JUICE 🧃
+            </p>
+
+            <div class="admin-login-line"></div>
+
+            <!-- Username -->
+            <div class="admin-input-group">
+
+                <label for="admin-username">
+                    👤 اسم المستخدم
+                </label>
+
+                <input
+                    type="text"
+                    id="admin-username"
+                    placeholder="اكتب اسم المستخدم"
+                    autocomplete="username"
+                >
+
+            </div>
+
+            <!-- Password -->
+            <div class="admin-input-group">
+
+                <label for="admin-password">
+                    🔑 كلمة المرور
+                </label>
+
+                <input
+                    type="password"
+                    id="admin-password"
+                    placeholder="اكتب كلمة المرور"
+                    autocomplete="current-password"
+                >
+
+            </div>
+
+            <!-- Login Button -->
+            <button
+                id="login-button"
+                class="admin-login-btn"
+                type="button"
+            >
+                🔐 تسجيل الدخول
+            </button>
+
+            <!-- Error -->
+            <p
+                id="login-error"
+                class="admin-login-error"
+                aria-live="polite"
+            ></p>
+
+            <!-- Back -->
+            <a
+                href="index.html"
+                class="back-store"
+            >
+                ← العودة إلى B11 JUICE
+            </a>
+
+        </div>
+
+    </main>
+
+    <script src="admin-login.js"></script>
+
+</body>
+
+</html>

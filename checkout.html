@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>إتمام الطلب - B11 JUICE</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
+
+    <header class="header">
+
+        <a href="index.html" class="logo">
+            <img src="b11-logo.png" alt="B11 JUICE">
+        </a>
+
+        <nav class="nav">
+
+            <a href="index.html">
+                الرئيسية
+            </a>
+
+            <a href="products.html">
+                المنتجات
+            </a>
+
+            <a href="cart.html">
+                🛒 السلة
+                <span id="cart-count">0</span>
+            </a>
+
+            <a href="favorites.html">
+                ❤️ المفضلة
+                <span id="favorite-count">0</span>
+            </a>
+
+            <a href="contact.html">
+                تواصل معنا
+            </a>
+
+            <div id="user-area"></div>
+
+            <a href="account.html">
+                👤 حسابي
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =====================================================
+         CHECKOUT
+    ===================================================== -->
+
+    <main class="checkout-page">
+
+        <div class="checkout-title">
+
+            <div class="checkout-icon">
+                🧃
+            </div>
+
+            <h1>
+                إتمام الطلب
+            </h1>
+
+            <p>
+                أدخل بيانات التوصيل وكمل طلبك بسهولة
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             CHECKOUT BOX
+        ================================================= -->
+
+        <div class="checkout-box">
+
+            <!-- NAME -->
+
+            <div class="input-group">
+
+                <label for="customer-name">
+                    👤 الاسم
+                </label>
+
+                <input
+                    type="text"
+                    id="customer-name"
+                    placeholder="الاسم"
+                    readonly
+                >
+
+            </div>
+
+
+            <!-- PHONE -->
+
+            <div class="input-group">
+
+                <label for="customer-phone">
+                    📱 رقم الهاتف
+                </label>
+
+                <input
+                    type="tel"
+                    id="customer-phone"
+                    placeholder="رقم الهاتف"
+                    readonly
+                >
+
+            </div>
+
+
+            <!-- ADDRESS -->
+
+            <div class="input-group">
+
+                <label for="customer-address">
+                    📍 عنوان التوصيل
+                </label>
+
+                <input
+                    type="text"
+                    id="customer-address"
+                    placeholder="اكتب عنوان التوصيل بالتفصيل"
+                    autocomplete="street-address"
+                >
+
+            </div>
+
+
+            <!-- NOTE -->
+
+            <div class="input-group">
+
+                <label for="customer-note">
+                    📝 ملاحظات على الطلب
+                </label>
+
+                <textarea
+                    id="customer-note"
+                    placeholder="أي ملاحظات إضافية على الطلب..."
+                    rows="4"
+                ></textarea>
+
+            </div>
+
+
+            <!-- INFO -->
+
+            <div class="checkout-info">
+
+                <div>
+                    🔒 بياناتك محفوظة
+                </div>
+
+                <div>
+                    📱 الطلب يتم إرساله عبر واتساب
+                </div>
+
+            </div>
+
+
+            <!-- SUBMIT -->
+
+            <button
+                type="button"
+                class="checkout-submit"
+                onclick="sendOrder()"
+            >
+                تأكيد الطلب عبر واتساب 📱
+            </button>
+
+
+            <!-- BACK -->
+
+            <a
+                href="cart.html"
+                class="back-to-cart"
+            >
+                ← الرجوع للسلة
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
+    <footer>
+
+        <div class="footer-logo">
+
+            <img
+                src="b11-logo.png"
+                alt="B11 JUICE"
+            >
+
+        </div>
+
+        <p>
+            Fresh • Natural • Premium 🧃
+        </p>
+
+
+        <div class="footer-links">
+
+            <a href="index.html">
+                الرئيسية
+            </a>
+
+            <a href="products.html">
+                المنتجات
+            </a>
+
+            <a href="cart.html">
+                السلة
+            </a>
+
+            <a href="favorites.html">
+                المفضلة
+            </a>
+
+            <a href="contact.html">
+                تواصل معنا
+            </a>
+
+            <a href="account.html">
+                حسابي
+            </a>
+
+        </div>
+
+
+        <div class="copyright">
+            © 2026 B11 JUICE - Fresh • Natural • Premium
+        </div>
+
+    </footer>
+
+
+    <!-- =====================================================
+         SCRIPTS
+    ===================================================== -->
+
+    <script src="script.js"></script>
+    <script src="account.js"></script>
+    <script src="auth.js"></script>
+
+    <script>
+
+        if (typeof requireLogin === "function") {
+
+            if (requireLogin()) {
+
+                if (typeof fillCheckoutUser === "function") {
+                    fillCheckoutUser();
+                }
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

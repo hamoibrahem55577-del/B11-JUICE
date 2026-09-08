@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>تواصل معنا - B11 JUICE</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+
+    <!-- LOGO -->
+
+    <a
+        href="index.html"
+        class="logo"
+    >
+
+        <img
+            src="b11-logo.png"
+            alt="B11 Juice"
+        >
+
+    </a>
+
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="nav">
+
+        <a href="index.html">
+            الرئيسية
+        </a>
+
+
+        <a href="products.html">
+            المنتجات
+        </a>
+
+
+        <a href="cart.html">
+
+            🛒 السلة
+
+            <span id="cart-count">
+                0
+            </span>
+
+        </a>
+
+
+        <a href="favorites.html">
+
+            ❤️ المفضلة
+
+            <span id="favorite-count">
+                0
+            </span>
+
+        </a>
+
+
+        <a
+            href="contact.html"
+            class="active"
+        >
+            تواصل معنا
+        </a>
+
+
+        <div id="user-area"></div>
+
+
+        <a href="account.html">
+            👤 حسابي
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     CONTACT PAGE
+===================================================== -->
+
+<main class="contact-page">
+
+
+    <!-- CONTACT HERO -->
+
+    <div class="contact-hero">
+
+        <span class="contact-icon">
+            💬
+        </span>
+
+
+        <span class="hero-badge">
+            B11 JUICE • CONTACT
+        </span>
+
+
+        <h1>
+            تواصل مع B11 JUICE
+        </h1>
+
+
+        <p>
+            عندك سؤال أو استفسار؟
+            إحنا هنا علشان نساعدك ❤️
+        </p>
+
+    </div>
+
+
+
+    <!-- =================================================
+         CONTACT CONTAINER
+    ================================================= -->
+
+    <div class="contact-container">
+
+
+        <!-- =================================================
+             CONTACT INFORMATION
+        ================================================= -->
+
+        <div class="contact-info">
+
+            <div class="contact-card-icon">
+                📞
+            </div>
+
+
+            <h2>
+                معلومات التواصل
+            </h2>
+
+
+            <p>
+                📍 الإسكندرية - مصر
+            </p>
+
+
+            <p>
+                📱 01214744008
+            </p>
+
+
+            <p>
+                📧 البريد الإلكتروني
+            </p>
+
+
+            <p>
+                🕒 يوميًا من 10 صباحًا حتى 10 مساءً
+            </p>
+
+
+
+            <!-- WHATSAPP -->
+
+            <a
+                href="https://wa.me/201214744008"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <button
+                    class="contact-btn"
+                    type="button"
+                >
+
+                    💬 تواصل عبر واتساب
+
+                </button>
+
+            </a>
+
+        </div>
+
+
+
+        <!-- =================================================
+             CONTACT FORM
+        ================================================= -->
+
+        <div class="contact-form">
+
+
+            <div class="contact-card-icon">
+                ✉️
+            </div>
+
+
+            <h2>
+                أرسل رسالة
+            </h2>
+
+
+
+            <input
+                type="text"
+                id="contact-name"
+                placeholder="الاسم"
+                autocomplete="name"
+            >
+
+
+
+            <input
+                type="email"
+                id="contact-email"
+                placeholder="البريد الإلكتروني"
+                autocomplete="email"
+            >
+
+
+
+            <textarea
+                id="contact-message"
+                placeholder="اكتب رسالتك هنا..."
+                rows="6"
+            ></textarea>
+
+
+
+            <button
+                class="contact-btn"
+                type="button"
+                onclick="sendContactMessage()"
+            >
+
+                ✉️ إرسال الرسالة
+
+            </button>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+
+    <!-- FOOTER LOGO -->
+
+    <div class="footer-logo">
+
+        <img
+            src="b11-logo.png"
+            alt="B11 Juice"
+        >
+
+    </div>
+
+
+
+    <p>
+        Fresh • Natural • Premium 🧃
+    </p>
+
+
+
+    <!-- FOOTER LINKS -->
+
+    <div class="footer-links">
+
+        <a href="index.html">
+            الرئيسية
+        </a>
+
+
+        <a href="products.html">
+            المنتجات
+        </a>
+
+
+        <a href="cart.html">
+            السلة
+        </a>
+
+
+        <a href="favorites.html">
+            المفضلة
+        </a>
+
+
+        <a href="contact.html">
+            تواصل معنا
+        </a>
+
+
+        <a href="account.html">
+            حسابي
+        </a>
+
+    </div>
+
+
+
+    <!-- COPYRIGHT -->
+
+    <div class="copyright">
+
+        © 2026 B11 JUICE
+        - Fresh • Natural • Premium
+
+    </div>
+
+</footer>
+
+<!-- =====================================================
+     SCRIPT
+===================================================== -->
+
+<script src="script.js"></script>
+
+
+<script>
+
+    function sendContactMessage() {
+
+        const name =
+            document.getElementById("contact-name").value.trim();
+
+        const email =
+            document.getElementById("contact-email").value.trim();
+
+        const message =
+            document.getElementById("contact-message").value.trim();
+
+
+        if (!name || !message) {
+
+            alert(
+                "⚠️ من فضلك اكتب الاسم والرسالة"
+            );
+
+            return;
+
+        }
+
+
+        let whatsappMessage =
+            "أهلاً B11 JUICE 🧃%0A%0A";
+
+
+        whatsappMessage +=
+            "الاسم: " +
+            encodeURIComponent(name) +
+            "%0A";
+
+
+        if (email) {
+
+            whatsappMessage +=
+                "البريد الإلكتروني: " +
+                encodeURIComponent(email) +
+                "%0A";
+
+        }
+
+
+        whatsappMessage +=
+            "الرسالة:%0A" +
+            encodeURIComponent(message);
+
+
+        window.open(
+            "https://wa.me/201214744008?text=" +
+            whatsappMessage,
+            "_blank"
+        );
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

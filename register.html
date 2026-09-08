@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>إنشاء حساب - B11 JUICE</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="register-page">
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header class="register-header">
+
+        <a href="index.html" class="logo">
+            <img src="b11-logo.png" alt="B11 JUICE">
+        </a>
+
+        <nav>
+
+            <a href="index.html">
+                الرئيسية
+            </a>
+
+            <a href="products.html">
+                المنتجات
+            </a>
+
+            <a href="cart.html">
+                🛒 السلة
+                <span id="cart-count">0</span>
+            </a>
+
+            <a href="favorites.html">
+                ❤️ المفضلة
+                <span id="favorite-count">0</span>
+            </a>
+
+            <a href="contact.html">
+                تواصل معنا
+            </a>
+
+            <div id="user-area"></div>
+
+            <a href="account.html">
+                👤 حسابي
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         REGISTER
+    ========================= -->
+
+    <main class="register-main">
+
+        <div class="register-box">
+
+            <!-- LOGO -->
+
+            <img
+                src="b11-logo.png"
+                alt="B11 JUICE"
+                class="register-logo"
+            >
+
+
+            <!-- TITLE -->
+
+            <h1>
+                📝 إنشاء حساب
+            </h1>
+
+            <p class="register-subtitle">
+                اعمل حساب جديد في B11 JUICE 🧃
+            </p>
+
+
+            <!-- NAME -->
+
+            <div class="register-input-group">
+
+                <label for="register-name">
+                    👤 الاسم
+                </label>
+
+                <input
+                    type="text"
+                    id="register-name"
+                    placeholder="اكتب اسمك"
+                    autocomplete="name"
+                >
+
+            </div>
+
+
+            <!-- PHONE -->
+
+            <div class="register-input-group">
+
+                <label for="register-phone">
+                    📱 رقم الهاتف
+                </label>
+
+                <input
+                    type="tel"
+                    id="register-phone"
+                    placeholder="اكتب رقم الهاتف"
+                    autocomplete="tel"
+                >
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="register-input-group">
+
+                <label for="register-password">
+                    🔐 كلمة المرور
+                </label>
+
+                <input
+                    type="password"
+                    id="register-password"
+                    placeholder="اكتب كلمة المرور"
+                    autocomplete="new-password"
+                >
+
+            </div>
+
+
+            <!-- CONFIRM PASSWORD -->
+
+            <div class="register-input-group">
+
+                <label for="register-password-confirm">
+                    🔐 تأكيد كلمة المرور
+                </label>
+
+                <input
+                    type="password"
+                    id="register-password-confirm"
+                    placeholder="اكتب كلمة المرور مرة تانية"
+                    autocomplete="new-password"
+                >
+
+            </div>
+
+
+            <!-- REGISTER BUTTON -->
+
+            <button
+                type="button"
+                class="register-submit"
+                onclick="registerUser()"
+            >
+                📝 إنشاء الحساب
+            </button>
+
+
+            <!-- ERROR -->
+
+            <p
+                id="register-error"
+                class="register-error"
+            ></p>
+
+
+            <!-- LOGIN -->
+
+            <div class="register-login">
+
+                <p>
+                    عندك حساب بالفعل؟
+                </p>
+
+                <a href="user-login.html">
+                    تسجيل الدخول 🔐
+                </a>
+
+            </div>
+
+
+            <!-- BACK -->
+
+            <a
+                href="index.html"
+                class="register-back"
+            >
+                ← العودة للرئيسية
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <div class="copyright">
+            © 2026 B11 JUICE - Fresh • Natural • Premium
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         SCRIPT
+    ========================= -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

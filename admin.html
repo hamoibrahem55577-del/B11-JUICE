@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>لوحة التحكم - Mohamed Store</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+</head>
+
+<body>
+
+
+<!-- =========================================
+     ADMIN HEADER
+========================================= -->
+
+<header class="admin-header">
+
+    <div class="admin-brand">
+
+        <img
+            src="b11-logo.png"
+            alt="B11 Logo"
+            class="admin-logo"
+        >
+
+        <div>
+
+            <h1>
+                Mohamed Store
+            </h1>
+
+            <span>
+                لوحة تحكم المتجر
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="admin-header-actions">
+
+        <a
+            href="index.html"
+            class="store-btn"
+        >
+            🏪 المتجر
+        </a>
+
+
+        <button
+            onclick="adminLogout()"
+            class="logout-btn"
+            type="button"
+        >
+            🚪 تسجيل الخروج
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================
+     ADMIN MAIN
+========================================= -->
+
+<main class="admin-container">
+
+
+    <!-- PAGE TITLE -->
+
+    <section class="admin-page-title">
+
+        <div>
+
+            <h2>
+                لوحة تحكم المتجر
+            </h2>
+
+            <p>
+                إدارة المنتجات والطلبات ومتابعة أداء المتجر
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         QUICK STATS
+    ====================================== -->
+
+    <section class="stats">
+
+
+        <!-- PRODUCTS -->
+
+        <div class="stat-box">
+
+            <div class="stat-icon">
+                📦
+            </div>
+
+            <div>
+
+                <h3>
+                    المنتجات
+                </h3>
+
+                <strong id="products-count">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- CART -->
+
+        <div class="stat-box">
+
+            <div class="stat-icon">
+                🛒
+            </div>
+
+            <div>
+
+                <h3>
+                    السلة
+                </h3>
+
+                <strong id="cart-count-admin">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- FAVORITES -->
+
+        <div class="stat-box">
+
+            <div class="stat-icon">
+                ❤️
+            </div>
+
+            <div>
+
+                <h3>
+                    المفضلة
+                </h3>
+
+                <strong id="favorites-count-admin">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         PRODUCTS MANAGEMENT
+    ====================================== -->
+
+    <section class="admin-section admin-products">
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>
+                    📦 إدارة المنتجات
+                </h2>
+
+                <p>
+                    إضافة وتعديل وحذف منتجات المتجر
+                </p>
+
+            </div>
+
+
+            <button
+                class="add-product-btn"
+                onclick="openAddProduct()"
+                type="button"
+            >
+                ➕ إضافة منتج
+            </button>
+
+        </div>
+
+
+        <div
+            id="admin-products-container"
+            class="admin-products-container"
+        >
+
+            <!-- JavaScript هيعرض المنتجات هنا -->
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         DASHBOARD
+    ====================================== -->
+
+    <section class="admin-section dashboard">
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>
+                    📊 إحصائيات المتجر
+                </h2>
+
+                <p>
+                    ملخص سريع لأداء المتجر والطلبات
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-cards">
+
+
+            <!-- TOTAL ORDERS -->
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-card-icon">
+                    📦
+                </div>
+
+                <h3>
+                    إجمالي الطلبات
+                </h3>
+
+                <strong id="total-orders">
+                    0
+                </strong>
+
+            </div>
+
+
+
+            <!-- NEW ORDERS -->
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-card-icon">
+                    🆕
+                </div>
+
+                <h3>
+                    الطلبات الجديدة
+                </h3>
+
+                <strong id="new-orders">
+                    0
+                </strong>
+
+            </div>
+
+
+
+            <!-- SALES -->
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-card-icon">
+                    💰
+                </div>
+
+                <h3>
+                    إجمالي المبيعات
+                </h3>
+
+                <strong id="total-sales">
+                    0 جنيه
+                </strong>
+
+            </div>
+
+
+
+            <!-- PRODUCTS -->
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-card-icon">
+                    🛍️
+                </div>
+
+                <h3>
+                    عدد المنتجات
+                </h3>
+
+                <strong id="total-products">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         ORDERS MANAGEMENT
+    ====================================== -->
+
+    <section class="admin-section admin-orders">
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>
+                    📦 إدارة الطلبات
+                </h2>
+
+                <p>
+                    متابعة الطلبات وتحديث حالتها
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <div class="order-search-box">
+
+            <input
+                type="text"
+                id="order-search"
+                placeholder="🔎 ابحث باسم العميل أو رقم الهاتف..."
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <!-- ORDERS -->
+
+        <div id="orders-container">
+
+            <p class="loading-orders">
+                جاري تحميل الطلبات...
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =========================================
+     ADD / EDIT PRODUCT MODAL
+========================================= -->
+
+<div
+    id="product-modal"
+    class="modal"
+>
+
+
+    <div class="modal-box">
+
+
+        <!-- CLOSE -->
+
+        <button
+            class="close-btn"
+            onclick="closeProductModal()"
+            type="button"
+            aria-label="إغلاق"
+        >
+            ✖
+        </button>
+
+
+
+        <!-- TITLE -->
+
+        <h2 id="modal-title">
+            إضافة منتج
+        </h2>
+
+
+        <p class="modal-subtitle">
+            أدخل بيانات المنتج ثم اضغط حفظ
+        </p>
+
+
+
+        <!-- PRODUCT NAME -->
+
+        <div class="modal-input-group">
+
+            <label for="product-name">
+                🏷️ اسم المنتج
+            </label>
+
+            <input
+                type="text"
+                id="product-name"
+                placeholder="اسم المنتج"
+            >
+
+        </div>
+
+
+
+        <!-- PRICE -->
+
+        <div class="modal-input-group">
+
+            <label for="product-price">
+                💰 السعر
+            </label>
+
+            <input
+                type="number"
+                id="product-price"
+                placeholder="السعر"
+                min="1"
+            >
+
+        </div>
+
+
+
+        <!-- OLD PRICE -->
+
+        <div class="modal-input-group">
+
+            <label for="product-old-price">
+                🏷️ السعر القديم
+            </label>
+
+            <input
+                type="number"
+                id="product-old-price"
+                placeholder="السعر القديم"
+                min="0"
+            >
+
+        </div>
+
+
+
+        <!-- IMAGE -->
+
+        <div class="modal-input-group">
+
+            <label for="product-image">
+                🖼️ صورة المنتج
+            </label>
+
+            <input
+                type="text"
+                id="product-image"
+                placeholder="مثال: mouse.jpg.png"
+            >
+
+        </div>
+
+
+
+        <!-- IMAGE PREVIEW -->
+
+        <div class="image-preview-wrapper">
+
+            <img
+                id="image-preview"
+                class="image-preview"
+                src=""
+                alt="معاينة صورة المنتج"
+            >
+
+        </div>
+
+
+
+        <!-- BADGE -->
+
+        <div class="modal-input-group">
+
+            <label for="product-badge">
+                ⭐ الشارة
+            </label>
+
+            <input
+                type="text"
+                id="product-badge"
+                placeholder="مثال: جديد ✨"
+            >
+
+        </div>
+
+
+
+        <!-- STOCK -->
+
+        <div class="modal-input-group">
+
+            <label for="product-stock">
+                📦 حالة المنتج
+            </label>
+
+            <select id="product-stock">
+
+                <option value="متوفر ✅">
+                    متوفر ✅
+                </option>
+
+                <option value="غير متوفر ❌">
+                    غير متوفر ❌
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- SAVE -->
+
+        <button
+            class="save-btn"
+            onclick="saveProduct()"
+            type="button"
+        >
+            💾 حفظ المنتج
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================
+     ADMIN SCRIPTS
+========================================= -->
+
+<script src="admin-auth.js"></script>
+
+<script src="admin.js"></script>
+
+
+</body>
+
+</html>
