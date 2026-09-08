@@ -50,21 +50,96 @@ function saveStorageJSON(key, value) {
 
 const STORE_WHATSAPP = "201214744008";
 
+// =====================================================
+// PRODUCTS - SUPABASE
+// =====================================================
+
+let products = [];
+
 
 // =====================================================
-// PRODUCTS
+// LOAD PRODUCTS FROM SUPABASE
 // =====================================================
 
-let products = getStorageJSON(
-    "adminProducts",
-    []
-);
+async function loadProductsFromSupabase() {
+
+    try {
+
+        const { data, error } =
+            await supabaseClient
+                .from("products")
+                .select("*")
+                .order("id", { ascending: true });
 
 
-if (!Array.isArray(products)) {
-    products = [];
+        if (error) {
+
+            console.error(
+                "Supabase Products Error:",
+                error
+            );
+
+            return;
+
+        }
+
+
+        products =
+            (data || []).map(function(product) {
+
+                return {
+
+                    id:
+                        String(product.id),
+
+                    name:
+                        String(product.name || ""),
+
+                    price:
+                        Number(product.price) || 0,
+
+                    oldPrice:
+                        Number(product.old_price) || 0,
+
+                    image:
+                        String(product.image || ""),
+
+                    badge:
+                        String(product.badge || ""),
+
+                    stock:
+                        String(
+                            product.stock ||
+                            "متوفر ✅"
+                        )
+
+                };
+
+            });
+
+
+        normalizeProducts();
+
+
+        console.log(
+            "تم تحميل المنتجات من Supabase ✅",
+            products
+        );
+
+
+        updateEverything();
+
+
+    } catch (error) {
+
+        console.error(
+            "Load Products Error:",
+            error
+        );
+
+    }
+
 }
-
 
 // =====================================================
 // NORMALIZE PRODUCTS
@@ -2754,6 +2829,26 @@ function registerUser() {
         "index.html";
 
 }
+// =====================================================
+// UPDATE FAVORITE COUNT
+// =====================================================
+
+function updateFavoriteCount() {
+
+    const favoriteCount =
+        document.getElementById("favorite-count");
+
+    if (!favoriteCount) {
+        return;
+    }
+
+    const currentFavorites =
+        getFavorites();
+
+    favoriteCount.textContent =
+        currentFavorites.length;
+
+}
 
 
 // =====================================================
@@ -2761,23 +2856,6 @@ function registerUser() {
 // =====================================================
 
 function updateEverything() {
-
-    products =
-        getStorageJSON(
-            "adminProducts",
-            []
-        );
-
-
-    if (!Array.isArray(products)) {
-
-        products = [];
-
-    }
-
-
-    normalizeProducts();
-
 
     cart =
         getCart();
@@ -2794,26 +2872,7 @@ function updateEverything() {
 
 
     updateFavoriteCount();
-  
 
-    // ========================================
-// UPDATE FAVORITE COUNT
-// ========================================
-
-function updateFavoriteCount() {
-
-    const favoriteCount =
-        document.getElementById("favorite-count");
-
-    if (!favoriteCount) {
-        return;
-    }
-
-    const currentFavorites = getFavorites();
-
-    favoriteCount.textContent =
-        currentFavorites.length;
-}
 
     displayCart();
 
@@ -2836,4 +2895,9 @@ function updateFavoriteCount() {
 // START SYSTEM
 // =====================================================
 
+// تحميل المنتجات من Supabase
+loadProductsFromSupabase();
+
+
+// تحديث باقي أجزاء الموقع
 updateEverything();
